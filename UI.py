@@ -26,6 +26,6 @@ def InitializeProcedure(G):
 def NextStep(result, G):
     v = PS.getWierzcholekONajwiekszejCyklowosci(G)
     result.append(v)
-    return PZ.getGrafPoNastepnejIteracji()
+    return PZ.getGrafPoNastepnejIteracji(v)
 
 InitializeProcedure(5)
