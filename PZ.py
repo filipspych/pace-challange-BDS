@@ -15,9 +15,9 @@ def rozpocznij(g: Graph):
 
 def getGrafPoNastepnejIteracji(wierzcholekONajwikszeCyklowosci: int) -> Graph:
     """Uwaga, graf jest zwracany przez referencję i ulegnie zmianom
-    po kazdym wykonaniu getGrafPoNastepnejIteracji(). To protect
-    your graph g from changing, you have to pass g.copy(). Jezeli
-    PZ ma graf pusty, to ta metoda nic nie robi."""
+    po kazdym wykonaniu getGrafPoNastepnejIteracji(). To keep immutable 
+    graph, you have to do g.copy(). 
+    Jezeli PZ ma graf pusty, to ta metoda nic nie robi."""
     if _g.vcount() == 0:
         return _g
     _g.delete_vertices(wierzcholekONajwikszeCyklowosci)
