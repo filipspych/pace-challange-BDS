@@ -1,5 +1,6 @@
 import igraph as ig
 import random
+import plot
 # n - number of nodes in graph
 # k - the size of optimum DFVS solution. k <= n/2
 # ed - edge density (m=ed*n)
@@ -7,7 +8,7 @@ import random
 def GenerateRandomGraph(n, k, ed=0):
     # stwórz losowe drzewo o n wierzchołkach
     graph = ig.Graph.Tree_Game(n, directed=True)
-    ig.plot(graph, vertex_label=[str(i) for i in range(n)])
+    plot.plotGraph(graph)
     # wylosuj wierzchołki, które mają należeć to OPT
     OPT =  random.sample(range(n), k)
 
@@ -42,3 +43,9 @@ def generateNodeIndependentCycles(graph: ig.Graph, OPT, n):
             for v in range(len(cycle))
             if not graph.are_connected(cycle[v], cycle[(v + 1) % len(cycle)])])
         i += 1
+
+
+# (g, OPT) = GenerateRandomGraph(8, 1)
+# print("OPT = " + str(OPT))
+# plot.plotGraph(g)
+# ig.plot(g, vertex_label=[str(i) for i in range(8)])
