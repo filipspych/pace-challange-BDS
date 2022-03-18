@@ -9,7 +9,6 @@ import PS
 import tempfile
 from sys import platform
 
-
 def InitializeProcedure(G: Graph):
 
     winda: bool = True if platform == "win32" else False
