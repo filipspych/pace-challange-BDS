@@ -37,5 +37,8 @@ def generateNodeIndependentCycles(graph: ig.Graph, OPT, n):
     i = 0
     for cycle in cycles:
         cycle.append(OPT[i])
-        graph.add_edges([(cycle[v], cycle[(v + 1) % len(cycle)]) for v in range(len(cycle))])
+        graph.add_edges([
+            (cycle[v], cycle[(v + 1) % len(cycle)])
+            for v in range(len(cycle))
+            if not graph.are_connected(cycle[v], cycle[(v + 1) % len(cycle)])])
         i += 1
