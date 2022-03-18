@@ -8,13 +8,15 @@ import PZ
 import PS
 import plot
 import generating as gen
+import opt
 
 
 def InitializeProcedure(G: Graph):
     PZ.rozpocznij(G)
     result: list[int] = []
     g: Graph = G
-    while(True):
+    OPT = opt.getMFVSDokladny(G.copy())
+    while(g.vcount() > 0):
         print('-------------------------------')
         print('i - next iteration')
         print('p - show graph')
@@ -29,6 +31,8 @@ def InitializeProcedure(G: Graph):
                 plot.plotGraph(g)
             case 'r':
                 print('Current result:' + str(result))
+    print('Size of found feedback vertex set: ' + str(len(result)))
+    print('Size of minimal feedback vertex set: ' + str(len(OPT)))
 
 
 def NextStep(result, G):
@@ -36,6 +40,6 @@ def NextStep(result, G):
     result.append(v)
     return PZ.getGrafPoNastepnejIteracji(v)
 
-(g, OPT) = gen.GenerateRandomGraph(8, 1)
+(g, OPT) = gen.GenerateRandomGraph(8, 2)
 print(OPT)
 InitializeProcedure(g)

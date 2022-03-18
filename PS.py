@@ -16,7 +16,7 @@ def PS(g: Graph):
         (a, b) = g.es.select(_source=curr_v)[next_step].tuple
         if(a!=curr_v): curr_v = a
         else: curr_v = b
-    print(visit_count)
+    # print(visit_count)
     return np.argmax(visit_count)
 
 

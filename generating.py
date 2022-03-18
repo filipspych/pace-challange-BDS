@@ -8,7 +8,7 @@ import plot
 def GenerateRandomGraph(n, k, ed=0):
     # stwórz losowe drzewo o n wierzchołkach
     graph = ig.Graph.Tree_Game(n, directed=True)
-    plot.plotGraph(graph)
+    # plot.plotGraph(graph)
     # wylosuj wierzchołki, które mają należeć to OPT
     OPT =  random.sample(range(n), k)
 
@@ -26,12 +26,12 @@ def generateNodeIndependentCycles(graph: ig.Graph, OPT, n):
     separators = random.sample(range(1, 1 + n), len(OPT))
     separators.append(0)
     separators.sort()
-    print("separators" + str(separators))
+    # print("separators" + str(separators))
     #   Stwórz permutację podciągów, które nie są w OPT.
     permutation = [x for x in range(n) if x not in OPT]
-    print(permutation)
+    # print(permutation)
     random.shuffle(permutation)
-    print(permutation)
+    # print(permutation)
     #   Stwórz listę list zawierających cykle odpowiadające wierzchołkom z OPT
     cycles = [permutation[separators[i-1]:separators[i]] for i in range(1, len(OPT) + 1)]
     #   Stwórz każdy z cykli w grafie
@@ -45,7 +45,7 @@ def generateNodeIndependentCycles(graph: ig.Graph, OPT, n):
         i += 1
 
 
-# (g, OPT) = GenerateRandomGraph(8, 1)
-# print("OPT = " + str(OPT))
-# plot.plotGraph(g)
+#(g, OPT) = GenerateRandomGraph(4, 1)
+#print("OPT = " + str(OPT))
+#plot.plotGraph(g)
 # ig.plot(g, vertex_label=[str(i) for i in range(8)])
