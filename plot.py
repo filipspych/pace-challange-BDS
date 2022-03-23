@@ -1,3 +1,4 @@
+import shlex
 import tempfile
 from sys import platform
 from igraph import Graph, os
@@ -29,4 +30,3 @@ def pokazSvg(g: Graph, filename: str, winda):
         os.system("start " + filename)  # windows
     else:
         os.system("open " + shlex.quote(filename))  # MacOS/X
-    input("Kliknij ENTER...")
