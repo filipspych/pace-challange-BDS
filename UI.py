@@ -9,16 +9,14 @@ import PS
 import plot
 import generating as gen
 import opt
-import time
-import random
 
 
-def InitializeProcedure(G: Graph, skip = False):
+def InitializeProcedure(G: Graph):
     PZ.rozpocznij(G)
     result: list[int] = []
     g: Graph = G.copy()
-    # OPT = opt.getMFVSDokladny(G)
-
+    skip = False
+    OPT = opt.getMFVSDokladny(G)
     while(g.vcount() > 0):
         if (not skip):
             print('-------------------------------')
@@ -43,7 +41,7 @@ def InitializeProcedure(G: Graph, skip = False):
             
     print('Size of found feedback vertex set: ' + str(len(result)))
     # x = input('If you want to compare with optimal solution, press \'o\'...')
-    # print('Size of minimal feedback vertex set: ' + str(len(OPT)))
+    print('Size of minimal feedback vertex set: ' + str(len(OPT)))
     # if (x == 'o'):
     #     OPT = opt.getMFVSDokladny(G)    
     #     print('Size of minimal feedback vertex set: ' + str(len(OPT)))
@@ -51,15 +49,9 @@ def InitializeProcedure(G: Graph, skip = False):
 
 def NextStep(result, G):
     v = PS.PS(G)
-    # v = random.randint(0, G.vcount() - 1)
     result.append(v)
     return PZ.getGrafPoNastepnejIteracji(v)
 
-
-for i in range(10):
-    (g, OPT) = gen.GenerateRandomGraph(300, 10, 200)
-    start = time.time()
-    InitializeProcedure(g.copy(), True)
-    end = time.time()
-    print('time elapsed: ' + str(end - start))
-
+(g, OPT) = gen.GenerateRandomGraph(30, 3)
+print(OPT)
+InitializeProcedure(g)
