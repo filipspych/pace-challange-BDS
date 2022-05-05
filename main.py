@@ -23,5 +23,6 @@ def run():
         g = PZ.getGrafPoNastepnejIteracji(v)
     
     kill.uaktualnij_rozwiazanie(result)
+    
     # PW.PW(G, result)
 
