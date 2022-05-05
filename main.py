@@ -5,11 +5,9 @@ import PZ
 import PS
 import PW
 import signal
+import kill
 
 result: list[int] = []
-
-def uaktualnij_rozwiazanie(rozwiazanie: list[int]):
-    result = rozwiazanie
 
 def run():
     signal.signal(signal.SIGINT, exit)
@@ -24,19 +22,7 @@ def run():
         result.append(g.vs[v]["index"])
         g = PZ.getGrafPoNastepnejIteracji(v)
     
-    print_result()
+    kill.uaktualnij_rozwiazanie(result)
     
     # PW.PW(G, result)
-
-def print_result():
-    for v in result:
-        print("%d\n"%(v+1))
-
-def exit(signum, frame):
-    print_result()
-    exit()
-
-    
-
-  
 

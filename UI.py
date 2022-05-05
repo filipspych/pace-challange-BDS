@@ -10,6 +10,7 @@ import plot
 import generating as gen
 import opt
 import time
+import random
 
 
 def InitializeProcedure(G: Graph, skip = False):
@@ -49,12 +50,14 @@ def InitializeProcedure(G: Graph, skip = False):
 
 def NextStep(result, G):
     v = PS.PS(G)
+    # v = random.randint(0, G.vcount() - 1)
     result.append(v)
     return PZ.getGrafPoNastepnejIteracji(v)
 
+
 for i in range(10):
-    (g, OPT) = gen.GenerateRandomGraph(300, 5, 100)
+    (g, OPT) = gen.GenerateRandomGraph(300, 10, 200)
     start = time.time()
-    InitializeProcedure(g, True)
+    InitializeProcedure(g.copy(), True)
     end = time.time()
-    print(end - start)
+    print('time elapsed: ' + str(end - start))
