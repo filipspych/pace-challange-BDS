@@ -9,7 +9,8 @@ def PS(g: Graph):
     visit_count = [0 for _ in range(g.vcount())]
     curr_v = random.randint(0, g.vcount()-1)
     
-    for i in range(g.vcount()* 500): #na razie pozniej bedziemy testowac jakies metody wyznaczania tej wartosci
+
+    for i in range(g.vcount()* 1000): #na razie pozniej bedziemy testowac jakies metody wyznaczania tej wartosci
         visit_count[curr_v] += 1
         if(g.vs[curr_v].outdegree()==0): return []
         next_step = random.randint(0, g.vs[curr_v].outdegree()-1)

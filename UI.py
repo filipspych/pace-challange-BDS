@@ -18,6 +18,7 @@ def InitializeProcedure(G: Graph, skip = False):
     result: list[int] = []
     g: Graph = G.copy()
     # OPT = opt.getMFVSDokladny(G)
+
     while(g.vcount() > 0):
         if (not skip):
             print('-------------------------------')
@@ -61,3 +62,4 @@ for i in range(10):
     InitializeProcedure(g.copy(), True)
     end = time.time()
     print('time elapsed: ' + str(end - start))
+
