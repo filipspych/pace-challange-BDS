@@ -10,10 +10,13 @@ import plot
 import generating as gen
 import opt
 import time
+import PW
 import random
 
-
+initialG: Graph = Graph()
 def InitializeProcedure(G: Graph, skip = False):
+    global initialG
+    initialG = G.copy()
     PZ.rozpocznij(G)
     result: list[int] = []
     g: Graph = G.copy()
@@ -40,7 +43,7 @@ def InitializeProcedure(G: Graph, skip = False):
                     skip = True
         else:
             g = NextStep(result, g)
-            
+    result = list(map(int,PW.PW(initialG, list(map(str, result)))))
     print('Size of found feedback vertex set: ' + str(len(result)))
     # x = input('If you want to compare with optimal solution, press \'o\'...')
     # print('Size of minimal feedback vertex set: ' + str(len(OPT)))
@@ -57,7 +60,8 @@ def NextStep(result, G):
 
 
 for i in range(10):
-    (g, OPT) = gen.GenerateRandomGraph(300, 10, 200)
+    (g, OPT) = gen.GenerateRandomGraph(10000, 10, 200)
+    g.vs["name"] = [str(i) for i in range(g.vcount())]
     start = time.time()
     InitializeProcedure(g.copy(), True)
     end = time.time()
