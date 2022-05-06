@@ -23,7 +23,7 @@ if __name__ == "__main__":
     print("len:")
     print(len(result))
 
-    PW.PW(G, result)
-    kill.end_with_result(result)
+    PW.PW(G, list(map(str,result)))
+    # kill.end_with_result(result)
 
 
