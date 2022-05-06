@@ -10,5 +10,5 @@ signal.signal(signal.SIGTERM, sigterm_handler)
 
 def end_with_result(result):
     for v in result:
-        print("%d"%(v+1))
+        print("%d"%(int(v)+1))
     exit()
