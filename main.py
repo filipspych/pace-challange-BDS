@@ -1,4 +1,3 @@
-from parso import parse
 import parser
 import igraph as ig
 import PZ
@@ -9,11 +8,11 @@ import kill
 
 result: list[int] = []
 
-def run():
+def run(path):
     signal.signal(signal.SIGINT, exit)
     signal.signal(signal.SIGTERM, exit)
 
-    G: ig.Graph = parser.parse()
+    G: ig.Graph = parser.parse(path)
     g: ig.Graph = G.copy()
 
     PZ.rozpocznij(g)
@@ -25,4 +24,6 @@ def run():
     kill.uaktualnij_rozwiazanie(result)
     
     # PW.PW(G, result)
+    kill.end_with_result()
 
+run("e_001")
