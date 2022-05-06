@@ -14,9 +14,8 @@ def run(path):
     PZ.rozpocznij(g)
     while(g.vcount() > 0):
         v = PS.PS(G)
-        result.append(g.vs[v]["index"])
-        g = PZ.getGrafPoNastepnejIteracji(v)
-    
+        result.append(g.vs[v]["name"])
+        g = PZ.getGrafPoNastepnejIteracji(v)    
     
     # PW.PW(G, result)
     kill.end_with_result(result)
