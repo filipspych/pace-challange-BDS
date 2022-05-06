@@ -2,7 +2,6 @@ import parser
 import igraph as ig
 import PZ
 import PS
-import PW
 import kill
 
 result: list[int] = []
