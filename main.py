@@ -6,7 +6,7 @@ import PW
 import kill
 
 result: list[int] = []
-path = "e_001"
+path = "h_001"
 
 if __name__ == "__main__":
     G: ig.Graph = parser.parse(path)
@@ -20,6 +20,8 @@ if __name__ == "__main__":
         g = PZ.getGrafPoNastepnejIteracji(v)    
     
     print(result)
+    print("len:")
+    print(len(result))
 
     # PW.PW(G, result)
     kill.end_with_result(result)

@@ -27,5 +27,7 @@ def __parse(iterator) -> Graph:
         # print("Line number")
         # print(i)
         # print()
+        if i % 1000 == 0:
+            print(i)
     return Graph(n=n, edges=edge_list, directed=True, vertex_attrs={"name": list(map(str, [i for i in range(n)]))})
     
