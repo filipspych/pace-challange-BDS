@@ -2,7 +2,6 @@ from igraph import *
 import numpy as np
 import random
 
-
 def PS(g: Graph):
     """zakladam ze dostaje silnie spojna skladowa bez wierzcholkow w ktorych mozna utknac,
     jesli nie przerywam prace na tym etapie na ktorym jest program i zwracam pusta tablice"""
@@ -24,4 +23,4 @@ def PS(g: Graph):
     return np.argmax(visit_count)
 
 
-PS(Graph.Full(10))
+#PS(Graph.Full(10))
