@@ -52,7 +52,7 @@ def InitializeProcedure(G: Graph, skip = False):
 def NextStep(result, G):
     v = PS.PS(G)
     # v = random.randint(0, G.vcount() - 1)
-    result.append(v)
+    result.append(G.vs[v]["name"])
     return PZ.getGrafPoNastepnejIteracji(v)
 
 
