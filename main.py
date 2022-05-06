@@ -2,6 +2,7 @@ import parser
 import igraph as ig
 import PZ
 import PS
+import PW
 import kill
 
 result: list[int] = []
@@ -22,7 +23,7 @@ if __name__ == "__main__":
     print("len:")
     print(len(result))
 
-    # PW.PW(G, result)
+    PW.PW(G, result)
     kill.end_with_result(result)
 
 
