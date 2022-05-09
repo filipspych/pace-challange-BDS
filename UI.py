@@ -12,7 +12,8 @@ import opt
 import time
 import random
 
-
+results: list[int] = []
+ 
 def InitializeProcedure(G: Graph, skip = False):
     PZ.rozpocznij(G)
     result: list[int] = []
@@ -40,8 +41,10 @@ def InitializeProcedure(G: Graph, skip = False):
                     skip = True
         else:
             g = NextStep(result, g)
-            
-    print('Size of found feedback vertex set: ' + str(len(result)))
+    global results
+    
+    results.append(len(result))
+    #print('Size of found feedback vertex set: ' + str(len(result)))
     # x = input('If you want to compare with optimal solution, press \'o\'...')
     # print('Size of minimal feedback vertex set: ' + str(len(OPT)))
     # if (x == 'o'):
@@ -55,11 +58,23 @@ def NextStep(result, G):
     result.append(G.vs[v]["name"])
     return PZ.getGrafPoNastepnejIteracji(v)
 
+import numpy as np
+ds = np.linspace(1, 17, 10)
+out = []
+k = 10
+for j in ds:
+    for i in range(10):
+        (g, OPT) = gen.GenerateRandomGraph(300, k, j)
+        g.vs["name"] = [str(i) for i in range (g.vcount())]
+        start = time.time()
+        InitializeProcedure(g.copy(), True)
+        end = time.time()
+        # print('time elapsed: ' + str(end - start))
+    average = sum(results) / len(results)
+    print()
+    print(j)
+    print(average / k)
+    print(average / 300)
+    out.append(average / 300)
 
-for i in range(10):
-    (g, OPT) = gen.GenerateRandomGraph(300, 10, 200)
-    start = time.time()
-    InitializeProcedure(g.copy(), True)
-    end = time.time()
-    print('time elapsed: ' + str(end - start))
-
+print(out)
