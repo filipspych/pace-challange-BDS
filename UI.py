@@ -10,11 +10,14 @@ import plot
 import generating as gen
 import opt
 import time
+import PW
 import random
 
 results: list[int] = []
- 
+initialG: Graph = Graph()
 def InitializeProcedure(G: Graph, skip = False):
+    global initialG
+    initialG = G.copy()
     PZ.rozpocznij(G)
     result: list[int] = []
     g: Graph = G.copy()
@@ -76,5 +79,5 @@ for j in ds:
     print(average / k)
     print(average / 300)
     out.append(average / 300)
-
 print(out)
+
