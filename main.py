@@ -6,7 +6,7 @@ import PW
 import kill
 
 result: list[int] = []
-path = "h_001"
+path = "e_001"
 
 if __name__ == "__main__":
     G: ig.Graph = parser.parse(path)

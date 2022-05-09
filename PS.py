@@ -9,14 +9,14 @@ def PS(g: Graph):
     curr_v = random.randint(0, g.vcount()-1)
     
 
-    for i in range(int(g.vcount()* 1)): #na razie pozniej bedziemy testowac jakies metody wyznaczania tej wartosci
+    for i in range(g.vcount() * 1): #na razie pozniej bedziemy testowac jakies metody wyznaczania tej wartosci
         visit_count[curr_v] += 1
         if(g.vs[curr_v].outdegree()==0): return []
         next_step = random.randint(0, g.vs[curr_v].outdegree()-1)
         (a, b) = g.es.select(_source=curr_v)[next_step].tuple
         if(a!=curr_v): curr_v = a
         else: curr_v = b
-    print(len(visit_count))
+    # print(len(visit_count))
     return np.argmax(visit_count)
 
 

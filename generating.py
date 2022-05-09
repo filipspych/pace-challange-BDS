@@ -28,7 +28,8 @@ def GenerateRandomGraph(n: int, k: int, ed: float):
     return (graph, OPT)
 
 def generateOverlappingCycles(graph, OPT, notOPT, ed):
-    while(graph.vcount() * ed < graph.ecount()):
+    while(graph.vcount() * ed > graph.ecount()):
+        # print("generateOverlappingCycles")
         # wylosuj podzbiór z OPT oraz podzbiór z topologicalOrder
         fromOPT = random.sample(OPT, random.randint(1, len(OPT)))
         notFromOPT = random.sample(notOPT, random.randint(1, len(OPT)))
@@ -50,7 +51,7 @@ def addCycleToGraph(graph: ig.Graph, fromOPT: list[int], notFromOPT: list[tuple]
         indicies.append(len(indicies))
 
     # Stwórz krawędzie pomiędzy kolejnymi wierzchołkami z verticiesNotFromOPT
-    
+
     graph.add_edges([
         (cycle[v], cycle[(v + 1) % len(cycle)])
         for v in range(len(cycle))
