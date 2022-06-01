@@ -1,4 +1,3 @@
-import re
 from igraph import *
 
 best_solution: list[str]
