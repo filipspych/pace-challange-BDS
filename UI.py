@@ -1,8 +1,3 @@
-# UI component
-# czyli PZ udostępnia PZ.getGrafPoNastepnejIteracji(int wierzcholekONajwikszeCyklowosci),
-# PS udostępnia PS.getWierzcholekONajwiekszejCyklowosci(G)
-# dodatkowo PZ.rozpocznij(G) który resetuje PZ i przekazuje PZ że teraz PZ będzie pracowało na grafie G
-
 from igraph import *
 import PZ
 import PS
