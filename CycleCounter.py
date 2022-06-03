@@ -5,6 +5,8 @@ import PZ
 import random
 import generating as gen
 import parser
+import timeit
+import csv
 
 path = "e_001"
 
@@ -16,7 +18,7 @@ def MakeStep(g: Graph, visited: list, v: int, target: int):
     for w in g.neighbors(v, "out"):
         if w == target:
             result += 1
-        if w not in visited:
+        elif w not in visited:
             visited.append(w)
             result += MakeStep(g, visited, w, target)
             visited.remove(w)
@@ -25,7 +27,7 @@ def MakeStep(g: Graph, visited: list, v: int, target: int):
 def CountAllCycles(g: Graph):
     result = []
     for i in range(g.vcount()):
-        #print("vert: ", i)
+        print("vert: ", i)
         result.append(Count(i, g))
     result_sum = sum(result)
     # for i in range(len(result)):
@@ -37,11 +39,10 @@ def ExactPS(g: Graph):
     print(res)
     return np.argmax(res)
 
-def FullPS(g: Graph):
+def FullPS(g: Graph, walks: int):
     visit_count = [0 for _ in range(g.vcount())]
     curr_v = random.randint(0, g.vcount()-1)
     
-    walks = 1000
     for j in range(walks):
         curr_v = random.randint(0, g.vcount()-1)
         for i in range(g.vcount()): 
@@ -55,21 +56,61 @@ def FullPS(g: Graph):
 
     return visit_count
 
+main_result = []
+
+def QuickExact(g: Graph):
+    global main_result 
+    main_result = [0 for _ in range(g.vcount())]
+    for i in range(g.vcount()):
+        print("vert: ", i)
+        MakeQuickStep(g, [], i, i)
+    return main_result
+
+def MakeQuickStep(g: Graph, visited: list, v: int, target: int):
+    global main_result
+    result = 0
+    for w in g.neighbors(v, "out"):
+        if w == target:
+            result += 1
+        elif w not in visited and w > target:
+            visited.append(w)
+            result += MakeQuickStep(g, visited, w, target)
+            visited.remove(w)
+    main_result[v] += result
+    return result
+
 if __name__ == "__main__":
-    (g, opt) = gen.GenerateRandomGraph(50, 10, 10)
+    (g, opt) = gen.GenerateRandomGraph(100, 20, 10)
     PZ.rozpocznij(g)
     
-    r1 = CountAllCycles(g)
-    r2 = FullPS(g)
+
+    walks = [1, 10, 100, 1000, 10000]
+    res = []
+
+    #res.append(QuickExact(g))
+    for walk in walks:
+        print(walk)
+        res.append(FullPS(g, walk))
+    
+    sums = []
+    for result in res:
+        sums.append(sum(result))
 
     r = []
+    for i in range(len(res[0])):
+        r.append( [res[j][i]/sums[j] for j in range(1, len(res))] )
 
-    for i in range(len(r1)):
-        r.append( [r1[i], r2[i], i] )
-
-    r.sort(key=lambda x: x[1])
-    for i in range(len(r)):
-        print(r[i])
+    r.sort(key=lambda x: x[-1])
+    # for i in range(len(r)):
+    #     text = str(res[0][i]) + ","
+    #     for el in r[i]:
+    #         text = text + str(el) + ","
+    #     text = text[:-2]
+    #     print(text)
+    with open("plot.csv", 'w') as file:
+        writer = csv.writer(file)
+        for i in range(len(r)):
+            writer.writerow(r[i])
     print(opt)
 
 
